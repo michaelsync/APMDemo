@@ -1,9 +1,11 @@
 ﻿using Akka.Actor;
+using Akka.Configuration.Hocon;
 using Akka.DI.Ninject;
 using JobScheduler.Actors;
 using JobScheduler.Messages;
 using Serilog;
 using System;
+using System.Configuration;
 
 namespace JobScheduler {
     public class JobSchedulerService {
@@ -23,7 +25,9 @@ namespace JobScheduler {
             var container = new Ninject.StandardKernel();
             //container.Bind<IDatabaseContextRepository>().To(typeof(MockDatabaseContextRepository));
 
-            system = ActorSystem.Create("MyBackendProcessingSystem");
+            var section = (AkkaConfigurationSection)ConfigurationManager.GetSection("akka");
+
+            system = ActorSystem.Create("MyBackendProcessingSystem", section.AkkaConfig);
             return new NinjectDependencyResolver(container, system);            
         }
 

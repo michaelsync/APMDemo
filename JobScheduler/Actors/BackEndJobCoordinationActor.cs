@@ -43,9 +43,8 @@ namespace JobScheduler.Actors {
             foreach(var model in models) {
                 Log.Debug(model.Name);
 
-                //var databaseConfigurationProps = Context.DI().Props<DatabaseConfigurationActor>();
-                //var databaseConfigurationActorRef = Context.ActorOf(databaseConfigurationProps, "DatabaseConfigurationActor");
-                //databaseConfigurationActorRef.Tell(new GetAllJobConfigurationsFromDbMessage());
+                var actorSelection = Context.ActorSelection("/user/BackEndJobAActor"); //This can come from Model
+                actorSelection.Tell("Yo yo!");
             }
         }
         }

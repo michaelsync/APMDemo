@@ -1,5 +1,6 @@
 ﻿using Akka.Actor;
 using Akka.DI.Ninject;
+using BackendJobA.Actors;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,9 @@ namespace BackendJobA {
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Start() {
-            InitDependencyInjection();
+            var propsResolver = InitDependencyInjection();
+            system.ActorOf(propsResolver.Create<BackEndJobAActor>(),
+                "BackEndJobAActor");
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
