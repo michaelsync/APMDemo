@@ -14,6 +14,7 @@ namespace JobScheduler {
 
         protected override void OnReceive(object message) {
             dbContext.GetJobConfigurationsAsync().Wait();//TODO : remove later
+            
             Console.WriteLine("Here we are");
         }
 
