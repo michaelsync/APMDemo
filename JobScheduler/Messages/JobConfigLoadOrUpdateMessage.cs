@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace JobScheduler.Messages {
-    public class StartJobCoordinatorMessage {
+    public class JobConfigLoadOrUpdateMessage {
     }
 }

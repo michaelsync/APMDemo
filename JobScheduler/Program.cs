@@ -4,12 +4,11 @@ using Topshelf;
 namespace JobScheduler {
     class Program {
 
-        static ILogger logger = new LoggerConfiguration()
+        static void Main(string[] args) {
+            Log.Logger = new LoggerConfiguration()
                         .ReadFrom.AppSettings()
                         .CreateLogger();
-
-        static void Main(string[] args) {
-            logger.Information("The scheduler is started.");
+            Log.Information("The scheduler is started.");
 
             HostFactory.Run(x =>
             {
@@ -27,7 +26,7 @@ namespace JobScheduler {
             });
 
 
-            logger.Information("The scheduler is ended.");
+            Log.Information("The scheduler is ended.");
         }
     }
 }

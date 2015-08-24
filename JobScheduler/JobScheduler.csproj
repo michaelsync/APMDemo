@@ -63,10 +63,6 @@
       <HintPath>..\BackendJobA\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Quartz, Version=2.3.3.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
-      <HintPath>..\BackendJobA\packages\Quartz.2.3.3\lib\net40\Quartz.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Serilog, Version=1.5.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\BackendJobA\packages\Serilog.1.5.9\lib\net45\Serilog.dll</HintPath>
       <Private>True</Private>
@@ -99,16 +95,13 @@
     <Compile Include="JobSchedulerService.cs" />
     <Compile Include="Messages\GetAllJobConfigurationsFromDbMessage.cs" />
     <Compile Include="Messages\JobConfigurationsMessage.cs" />
-    <Compile Include="Messages\StartJobCoordinatorMessage.cs" />
+    <Compile Include="Messages\JobConfigLoadOrUpdateMessage.cs" />
     <Compile Include="Models\JobConfigurationModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="job_scheduling_data_2_0.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
