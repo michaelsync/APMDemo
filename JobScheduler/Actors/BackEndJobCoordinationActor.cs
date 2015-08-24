@@ -5,6 +5,7 @@ using JobScheduler.Models;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace JobScheduler.Actors {
@@ -28,8 +29,12 @@ namespace JobScheduler.Actors {
             Log.Information("Recieved JobConfigLoadOrUpdate Request");
 
             var databaseConfigurationProps = Context.DI().Props<DatabaseConfigurationActor>();
-            var databaseConfigurationActorRef = Context.ActorOf(databaseConfigurationProps, "DatabaseConfigurationActor");
-            databaseConfigurationActorRef.Tell(new GetAllJobConfigurationsFromDbMessage());
+            var databaseConfigurationActorName = "DatabaseConfigurationActor";
+
+            var databaseConfigurationActorRef = Context.Child(databaseConfigurationActorName).Equals(ActorRefs.Nobody)
+                ? Context.ActorOf(databaseConfigurationProps, databaseConfigurationActorName)
+                : Context.Child(databaseConfigurationActorName);
+            databaseConfigurationActorRef.Tell(new GetAllJobConfigurationsFromDbMessage());            
         }
 
         private static void OnJobConfigurationModelsReceived(List<JobConfigurationModel> models) {
