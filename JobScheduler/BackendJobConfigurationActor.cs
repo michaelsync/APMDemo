@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Akka.Actor;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JobScheduler {
-    public class BackendJobConfigurationReader : IBackendJobConfigurationReader {
+    public class BackendJobConfigurationActor : ReceiveActor {
+        
     }
 }

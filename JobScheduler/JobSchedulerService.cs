@@ -15,12 +15,12 @@ namespace JobScheduler {
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
         private static void InitDependencyInjection() {
-            //var container = new Ninject.StandardKernel();
-            //container.Bind<IWorkerService>().To(typeof(WorkerService));
+            var container = new Ninject.StandardKernel();
+            container.Bind<IDatabaseContextRepository>().To(typeof(MockDatabaseContextRepository));
 
             //var system = ActorSystem.Create("MyBackendProcessingSystem");
             //var propsResolver = new NinjectDependencyResolver(container, system);
-            //new NinjectDependencyResolver(container, system);
+            //propsResolver.Release
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]

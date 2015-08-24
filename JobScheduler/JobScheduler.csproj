@@ -93,10 +93,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackendJobConfigurationReader.cs" />
+    <Compile Include="BackendJobConfigurationActor.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IBackendJobConfigurationReader.cs" />
+    <Compile Include="IDatabaseContextRepository.cs" />
     <Compile Include="JobSchedulerService.cs" />
+    <Compile Include="MockDatabaseContextRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
