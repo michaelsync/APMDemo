@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="FxCop rules for Maloft software development" Description="This rule set contains the rules for Maloft software development." ToolsVersion="10.0">
+  <IncludeAll Action="Error" />
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1062" Action="None" />
+    <Rule Id="CA2210" Action="None" />
+	<Rule Id="CA2227" Action="None" />
+    <Rule Id="CA1020" Action="None" />
+    <Rule Id="CA1056" Action="None" />
+    <Rule Id="CA1809" Action="None" />
+	<Rule Id="CA1014" Action="None" />
+	<Rule Id="CA1715" Action="None" />
+	<Rule Id="CA1720" Action="None" />
+	<Rule Id="CA1026" Action="None" />
+	<Rule Id="CA1006" Action="None" />
+	<Rule Id="CA1011" Action="None" />
+	<Rule Id="CA1303" Action="None" />	
+	<Rule Id="CA1024" Action="None" />	
+	<Rule Id="CA0060" Action="None" />
+	<Rule Id="CA2204" Action="None" />
+  </Rules>
+</RuleSet>
