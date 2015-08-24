@@ -1,8 +1,15 @@
-﻿using Topshelf;
+﻿using Serilog;
+using Topshelf;
 
 namespace JobScheduler {
     class Program {
+
+        static ILogger logger = new LoggerConfiguration()
+                        .ReadFrom.AppSettings()
+                        .CreateLogger();
+
         static void Main(string[] args) {
+            logger.Information("The scheduler is started.");
 
             HostFactory.Run(x =>
             {
@@ -18,7 +25,9 @@ namespace JobScheduler {
                 x.SetDisplayName("JobScheduler");
                 x.SetServiceName("JobScheduler");
             });
-            
+
+
+            logger.Information("The scheduler is ended.");
         }
     }
 }

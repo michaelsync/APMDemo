@@ -93,13 +93,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackEndJobConfigurationActor.cs" />
-    <Compile Include="BackEndJobCoordinationActor.cs" />
+    <Compile Include="Actors\DatabaseConfigurationActor.cs" />
+    <Compile Include="Actors\BackEndJobCoordinationActor.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IBackEndJobConfigurationReader.cs" />
     <Compile Include="IDatabaseContextRepository.cs" />
     <Compile Include="JobSchedulerService.cs" />
+    <Compile Include="Messages\GetAllJobConfigurationsFromDbMessage.cs" />
+    <Compile Include="Messages\JobConfigurationsMessage.cs" />
+    <Compile Include="Messages\StartJobCoordinatorMessage.cs" />
     <Compile Include="MockDatabaseContextRepository.cs" />
+    <Compile Include="Models\JobConfigurationModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

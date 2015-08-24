@@ -1,5 +1,6 @@
 ﻿using Akka.Actor;
 using Akka.DI.Ninject;
+using JobScheduler.Actors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,7 @@ namespace JobScheduler {
             var system = ActorSystem.Create("MyBackendProcessingSystem");
             var propsResolver = new NinjectDependencyResolver(container, system);
                         
-            var backendJobConfigurationActor = system.ActorOf(propsResolver.Create<BackEndJobConfigurationActor>(), "BackendJobConfigurationActor");
-            
+            var backendJobConfigurationActor = system.ActorOf(propsResolver.Create<DatabaseConfigurationActor>(), "BackendJobConfigurationActor");
             backendJobConfigurationActor.Tell("Start");
         }
 
