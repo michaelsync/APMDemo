@@ -50,6 +50,10 @@
       <HintPath>..\packages\Akka.DI.Ninject.1.0.4\lib\net45\Akka.DI.Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Akka.Logger.Serilog, Version=1.0.4.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Akka.Logger.Serilog.1.0.4\lib\net45\Akka.Logger.Serilog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Akka.Remote, Version=1.0.4.12, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Akka.Remote.1.0.4\lib\net45\Akka.Remote.dll</HintPath>
       <Private>True</Private>
