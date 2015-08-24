@@ -29,10 +29,13 @@ namespace JobScheduler {
 
         private static void ScheduleBackEndJobCoordinator(NinjectDependencyResolver propsResolver) {
             Log.Information("ScheduleBackEndJobCoordinator");
-            var backendJobConfigurationActor = system.ActorOf(propsResolver.Create<DatabaseConfigurationActor>(), "BackendJobConfigurationActor");
+
+            var backEndJobCoordinationActor = system.ActorOf(propsResolver.Create<BackEndJobCoordinationActor>(), 
+                "BackEndJobCoordinationActor");
+
             system.Scheduler
-                .ScheduleTellRepeatedly(100, 3000, backendJobConfigurationActor, 
-                new JobConfigLoadOrUpdateMessage(), backendJobConfigurationActor);
+                .ScheduleTellRepeatedly(100, 3000, backEndJobCoordinationActor, 
+                new JobConfigLoadOrUpdateMessage(), backEndJobCoordinationActor);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]

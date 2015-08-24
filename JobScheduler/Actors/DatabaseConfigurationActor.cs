@@ -1,5 +1,7 @@
 ﻿using Akka.Actor;
 using JobScheduler.Messages;
+using JobScheduler.Models;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,14 @@ namespace JobScheduler.Actors {
         public DatabaseConfigurationActor() {
 
             Receive<GetAllJobConfigurationsFromDbMessage>(m => {
-                Console.WriteLine("Database");
-                //var a = Context.ActorSelection("");
-                //a.Tell();
+                Log.Information("Received GetAllJobConfigurationsFromDbMessage.");
+
+                var allJobConfigs = new List<JobConfigurationModel> {
+                    new JobConfigurationModel() { Id =1, Name = "BackEndJobA" },
+                    new JobConfigurationModel() { Id =2, Name = "BackEndJobB" }
+                };
+
+                Context.Sender.Tell(allJobConfigs);
             });
         }
 
