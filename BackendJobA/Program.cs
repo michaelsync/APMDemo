@@ -5,6 +5,7 @@ namespace BackendJobA {
     class Program {
         static void Main(string[] args) {
             Log.Logger = new LoggerConfiguration()
+                       .Enrich.WithThreadId()
                        .ReadFrom.AppSettings()
                        .CreateLogger();
             Log.Information("BackEndJobAService is started.");

@@ -6,6 +6,7 @@ namespace JobScheduler {
 
         static void Main(string[] args) {
             Log.Logger = new LoggerConfiguration()
+                        .Enrich.WithThreadId()
                         .ReadFrom.AppSettings()
                         .CreateLogger();
             Log.Information("The scheduler is started.");
