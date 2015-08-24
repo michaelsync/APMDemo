@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace JobScheduler {
     public interface IDatabaseContextRepository {
 
-        IList<string> GetJobConfigurations();
+        Task<IList<string>> GetJobConfigurationsAsync();
     }
 }

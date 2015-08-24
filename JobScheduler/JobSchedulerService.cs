@@ -18,9 +18,12 @@ namespace JobScheduler {
             var container = new Ninject.StandardKernel();
             container.Bind<IDatabaseContextRepository>().To(typeof(MockDatabaseContextRepository));
 
-            //var system = ActorSystem.Create("MyBackendProcessingSystem");
-            //var propsResolver = new NinjectDependencyResolver(container, system);
-            //propsResolver.Release
+            var system = ActorSystem.Create("MyBackendProcessingSystem");
+            var propsResolver = new NinjectDependencyResolver(container, system);
+                        
+            var backendJobConfigurationActor = system.ActorOf(propsResolver.Create<BackendJobConfigurationActor>(), "BackendJobConfigurationActor");
+            
+            backendJobConfigurationActor.Tell("Start");
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]

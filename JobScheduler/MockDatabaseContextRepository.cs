@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace JobScheduler {
     public class MockDatabaseContextRepository : IDatabaseContextRepository {
-        public IList<string> GetJobConfigurations() {
-            throw new NotImplementedException();
+        public async Task<IList<string>> GetJobConfigurationsAsync() {
+            await Task.Delay(100);
+            return new List<string> {
+                "JobA",
+                "JobB"
+            };
         }
     }
 }
