@@ -21,7 +21,7 @@ namespace JobScheduler {
             var system = ActorSystem.Create("MyBackendProcessingSystem");
             var propsResolver = new NinjectDependencyResolver(container, system);
                         
-            var backendJobConfigurationActor = system.ActorOf(propsResolver.Create<BackendJobConfigurationActor>(), "BackendJobConfigurationActor");
+            var backendJobConfigurationActor = system.ActorOf(propsResolver.Create<BackEndJobConfigurationActor>(), "BackendJobConfigurationActor");
             
             backendJobConfigurationActor.Tell("Start");
         }

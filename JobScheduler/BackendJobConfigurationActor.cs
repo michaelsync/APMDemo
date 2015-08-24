@@ -6,15 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace JobScheduler {
-    public class BackendJobConfigurationActor : UntypedActor {
-        IDatabaseContextRepository dbContext;
-        public BackendJobConfigurationActor(IDatabaseContextRepository dbContext) {
-            this.dbContext = dbContext;
-        }
-
+    public class BackEndJobConfigurationActor : UntypedActor {
         protected override void OnReceive(object message) {
-            dbContext.GetJobConfigurationsAsync().Wait();//TODO : remove later
-            
             Console.WriteLine("Here we are");
         }
 
