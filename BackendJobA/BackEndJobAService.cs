@@ -1,9 +1,11 @@
 ﻿using Akka.Actor;
+using Akka.Configuration.Hocon;
 using Akka.DI.Ninject;
 using BackendJobA.Actors;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +28,9 @@ namespace BackendJobA {
             var container = new Ninject.StandardKernel();
             //container.Bind<IDatabaseContextRepository>().To(typeof(MockDatabaseContextRepository));
 
-            system = ActorSystem.Create("MyBackendProcessingSystem");
+            var section = (AkkaConfigurationSection)ConfigurationManager.GetSection("akka");
+
+            system = ActorSystem.Create("MyBackendProcessingSystem", section.AkkaConfig);
             return new NinjectDependencyResolver(container, system);
         }
         
