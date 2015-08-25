@@ -1,6 +1,8 @@
 ﻿using Akka.Actor;
+using Akka.Cluster.Routing;
 using Akka.Configuration.Hocon;
 using Akka.DI.Ninject;
+using Akka.Routing;
 using JobScheduler.Actors;
 using JobScheduler.Messages;
 using Serilog;
@@ -22,12 +24,13 @@ namespace JobScheduler {
         private static NinjectDependencyResolver InitDependencyInjection() {
             Log.Information("Started injecting the required services and actors ");
 
-            var container = new Ninject.StandardKernel();
+            var container = new Ninject.StandardKernel();            
             //container.Bind<IDatabaseContextRepository>().To(typeof(MockDatabaseContextRepository));
 
             var section = (AkkaConfigurationSection)ConfigurationManager.GetSection("akka");
 
             system = ActorSystem.Create("MyBackendProcessingSystem", section.AkkaConfig);
+
             return new NinjectDependencyResolver(container, system);            
         }
 

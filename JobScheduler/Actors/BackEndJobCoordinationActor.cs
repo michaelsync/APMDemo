@@ -1,16 +1,22 @@
 ﻿using Akka.Actor;
+using Akka.Cluster.Routing;
 using Akka.DI.Core;
+using Akka.Routing;
 using JobScheduler.Messages;
 using JobScheduler.Models;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Globalization;
 using System.Threading.Tasks;
 
 namespace JobScheduler.Actors {
     public class BackEndJobCoordinationActor : ReceiveActor {
+
         public BackEndJobCoordinationActor() {
+
+            
 
             Receive<JobConfigLoadOrUpdateMessage>(m => {
                 OnJobConfigLoadOrUpdateMessageReceived();
@@ -40,8 +46,14 @@ namespace JobScheduler.Actors {
             foreach(var model in models) {
                 Log.Debug(model.Name);
 
-                var actorSelection = Context.ActorSelection("akka.tcp://MyBackendProcessingSystem@127.0.0.1:2553/user/BackEndJobAActor"); //This can come from Model
-                actorSelection.Tell("Yo yo!");
+                Context.ActorSelection("/user/BackEndJobAActor").Tell("Hejarr");
+
+                //var backendRouter =
+                //    Context.ActorOf(
+                //        Props.Empty.WithRouter(new ClusterRouterGroup(new ConsistentHashingGroup("/user/BackEndJobAActor"),
+                //            new ClusterRouterGroupSettings(10, false, "backend", ImmutableHashSet.Create("/user/BackEndJobAActor")))));
+
+                //backendRouter.Tell("Yo yo!");
             }
         }
         }
