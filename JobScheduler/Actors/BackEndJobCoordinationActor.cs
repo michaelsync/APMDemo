@@ -1,17 +1,11 @@
 ﻿using Akka.Actor;
-using Akka.Cluster.Routing;
 using Akka.DI.Core;
 using Akka.Routing;
 using BackEndJobs.Actors;
 using JobManager.Messages;
 using JobManager.Models;
 using Serilog;
-using Serilog.Context;
-using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Globalization;
-using System.Threading.Tasks;
 
 namespace JobManager.Actors {
     public class BackEndJobCoordinationActor : ReceiveActor {
