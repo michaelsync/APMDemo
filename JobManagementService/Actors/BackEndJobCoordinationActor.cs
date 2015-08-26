@@ -5,6 +5,7 @@ using BackEndSystem.Common.Messages;
 using JobManager.Messages;
 using JobManager.Models;
 using Serilog;
+using Serilog.Context;
 using System;
 using System.Collections.Generic;
 
@@ -46,13 +47,11 @@ namespace JobManager.Actors {
             Log.Information("Recieved the list of JobConfigurationModels");
 
             foreach(var model in models) {
-                Log.Debug(model.Name);
-                Console.ReadLine();
-
-                this.router.Tell(new StartBackEndJobMessage(1));
-
-                //var backEndJobAActor = CreateOrGetActor<RemoteJobActor>("backends", withRouther: true);
-                //backEndJobAActor.Tell(new StartBackEndJobMessage(1));
+                using (LogContext.PushProperty("JobId", "1")) {
+                    Log.Debug(model.Name);
+                    Console.ReadLine();
+                    this.router.Tell(new StartBackEndJobMessage(1));
+                }                    
             }
         }
    }

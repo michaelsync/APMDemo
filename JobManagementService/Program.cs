@@ -12,7 +12,8 @@ namespace JobManager {
 
             Log.Logger = new LoggerConfiguration()
                         .Enrich.WithThreadId()    
-                        .Enrich.WithMachineName()                    
+                        .Enrich.WithMachineName()
+                        .Enrich.FromLogContext()
                         .ReadFrom.AppSettings()
                         .CreateLogger();
 

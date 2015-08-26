@@ -6,6 +6,8 @@ namespace BackEndJobContainer {
         static void Main(string[] args) {
             Log.Logger = new LoggerConfiguration()
                        .Enrich.WithThreadId()
+                       .Enrich.WithMachineName()
+                       .Enrich.FromLogContext()
                        .ReadFrom.AppSettings()
                        .CreateLogger();
             Log.Information("BackEndJobAService is started.");
