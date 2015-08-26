@@ -22,7 +22,6 @@ namespace JobManager.Actors {
             
         }
 
-
         private static void OnJobConfigLoadOrUpdateMessageReceived() {
 
             Log.Information("Recieved JobConfigLoadOrUpdate Request");
@@ -43,8 +42,8 @@ namespace JobManager.Actors {
                 Log.Debug(model.Name);
 
                 var router = Context.ActorOf(Props.Create(() => new BackEndJobAActor())
-                .WithRouter(FromConfig.Instance),
-                "BackEndJobAActor");
+                        .WithRouter(FromConfig.Instance),
+                        "BackEndJobAActor");
                 router.Tell("Yell");
 
                 //Context.ActorSelection("/user/BackEndJobAActor").Tell("Hejarr");
@@ -57,6 +56,7 @@ namespace JobManager.Actors {
                 //backendRouter.Tell("Yo yo!");
             }
         }
-        }
+
+   }
     
 }

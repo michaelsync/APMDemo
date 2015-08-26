@@ -2,6 +2,7 @@
 using Akka.Configuration.Hocon;
 using Akka.DI.AutoFac;
 using Akka.Routing;
+using Autofac;
 using BackEndJobs.Actors;
 using JobManager.Actors;
 using JobManager.Messages;
@@ -25,6 +26,10 @@ namespace JobManager {
             Log.Information("Started injecting the required services and actors ");
 
             var builder = new Autofac.ContainerBuilder();
+            builder.RegisterType<BackEndJobCoordinationActor>();
+            builder.RegisterType<DatabaseConfigurationActor>();
+            builder.RegisterType<BackEndJobAActor>();
+
             //builder.RegisterType<WorkerService>().As<IWorkerService>();
             var container = builder.Build();
 
