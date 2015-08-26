@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JobScheduler.Messages {
+namespace JobManager.Messages {
     public class JobConfigLoadOrUpdateMessage {
     }
 }

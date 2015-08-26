@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BackendJobA.Actors {
+namespace JobManager.Actors {
     public class BackEndJobAActor : ReceiveActor {
         public BackEndJobAActor() {
             Receive<string>(m => {

@@ -1,7 +1,7 @@
 ﻿using Serilog;
 using Topshelf;
 
-namespace BackendJobA {
+namespace BackEndJobContainer {
     class Program {
         static void Main(string[] args) {
             Log.Logger = new LoggerConfiguration()
@@ -11,8 +11,8 @@ namespace BackendJobA {
             Log.Information("BackEndJobAService is started.");
 
             HostFactory.Run(x => {
-                x.Service<BackEndJobAService>(s => {
-                    s.ConstructUsing(name => new BackEndJobAService());
+                x.Service<BackEndJobService>(s => {
+                    s.ConstructUsing(name => new BackEndJobService());
                     s.WhenStarted(tc => tc.Start());
                     s.WhenStopped(tc => tc.Stop());
                 });

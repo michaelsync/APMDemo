@@ -1,17 +1,14 @@
 ﻿using Akka.Actor;
-using Akka.Cluster.Routing;
 using Akka.Configuration.Hocon;
-using Akka.DI.Ninject;
-using Akka.Routing;
-using JobScheduler.Actors;
-using JobScheduler.Messages;
+using Akka.DI.AutoFac;
+using JobManager.Actors;
+using JobManager.Messages;
 using Serilog;
-using System;
 using System.Configuration;
 
-namespace JobScheduler {
+namespace JobManager {
 
-    public class JobSchedulerService {
+    public class JobManagementService {
         
         private static ActorSystem system;
 
@@ -22,20 +19,20 @@ namespace JobScheduler {
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
-        private static NinjectDependencyResolver InitDependencyInjection() {
+        private static AutoFacDependencyResolver InitDependencyInjection() {
             Log.Information("Started injecting the required services and actors ");
 
-            var container = new Ninject.StandardKernel();            
-            //container.Bind<IDatabaseContextRepository>().To(typeof(MockDatabaseContextRepository));
+            var builder = new Autofac.ContainerBuilder();
+            //builder.RegisterType<WorkerService>().As<IWorkerService>();
+            var container = builder.Build();
 
             var section = (AkkaConfigurationSection)ConfigurationManager.GetSection("akka");
 
             system = ActorSystem.Create("MyBackendProcessingSystem", section.AkkaConfig);
 
-            return new NinjectDependencyResolver(container, system);            
+            return new AutoFacDependencyResolver(container, system);
         }
-
-        private static void ScheduleBackEndJobCoordinator(NinjectDependencyResolver propsResolver) {
+        private static void ScheduleBackEndJobCoordinator(AutoFacDependencyResolver propsResolver) {
             Log.Information("ScheduleBackEndJobCoordinator");
 
             var backEndJobCoordinationActor = system.ActorOf(propsResolver.Create<BackEndJobCoordinationActor>(), 
@@ -48,6 +45,7 @@ namespace JobScheduler {
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Stop() {
+            system.Shutdown();
         }
     }
 }

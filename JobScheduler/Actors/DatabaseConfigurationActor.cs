@@ -1,6 +1,6 @@
 ﻿using Akka.Actor;
-using JobScheduler.Messages;
-using JobScheduler.Models;
+using JobManager.Messages;
+using JobManager.Models;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JobScheduler.Actors {
+namespace JobManager.Actors {
     public class DatabaseConfigurationActor : ReceiveActor {
         public DatabaseConfigurationActor() {
 

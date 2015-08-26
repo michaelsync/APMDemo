@@ -2,8 +2,8 @@
 using Akka.Cluster.Routing;
 using Akka.DI.Core;
 using Akka.Routing;
-using JobScheduler.Messages;
-using JobScheduler.Models;
+using JobManager.Messages;
+using JobManager.Models;
 using Serilog;
 using Serilog.Context;
 using System;
@@ -12,7 +12,7 @@ using System.Collections.Immutable;
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace JobScheduler.Actors {
+namespace JobManager.Actors {
     public class BackEndJobCoordinationActor : ReceiveActor {
 
         public BackEndJobCoordinationActor() {
@@ -24,12 +24,11 @@ namespace JobScheduler.Actors {
             Receive<List<JobConfigurationModel>>(m => {
                 OnJobConfigurationModelsReceived(m);
             });
-           
+            
         }
 
 
         private static void OnJobConfigLoadOrUpdateMessageReceived() {
-            Log.ForContext<BackEndJobCoordinationActor>();
 
             Log.Information("Recieved JobConfigLoadOrUpdate Request");
 

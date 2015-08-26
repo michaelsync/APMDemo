@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Serilog.Events;
 
-namespace JobScheduler.Core {
+namespace JobManager.Core {
 
     //class ActorEnricher : ILogEventEnricher {
     //    public void Enrich(Serilog.Events.LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
