@@ -3,7 +3,6 @@ using Akka.Configuration.Hocon;
 using Akka.DI.AutoFac;
 using Akka.Routing;
 using Autofac;
-using BackEndJobs.Actors;
 using JobManager.Actors;
 using JobManager.Messages;
 using Serilog;
@@ -28,7 +27,7 @@ namespace JobManager {
             var builder = new Autofac.ContainerBuilder();
             builder.RegisterType<BackEndJobCoordinationActor>();
             builder.RegisterType<DatabaseConfigurationActor>();
-            builder.RegisterType<BackEndJobAActor>();
+
 
             //builder.RegisterType<WorkerService>().As<IWorkerService>();
             var container = builder.Build();
@@ -40,9 +39,11 @@ namespace JobManager {
             return new AutoFacDependencyResolver(container, system);
         }
         private static void ScheduleBackEndJobCoordinator(AutoFacDependencyResolver propsResolver) {
-            Log.Information("ScheduleBackEndJobCoordinator");
+            Log.Information("ScheduleBackEndJobCoordinator {1}", propsResolver.ToString());
 
-            var backEndJobCoordinationActor = system.ActorOf(propsResolver.Create<BackEndJobCoordinationActor>(), 
+            var router = system.ActorOf(Props.Create(() => new RemoteJobActor()).WithRouter(FromConfig.Instance), "tasker1");
+
+            var backEndJobCoordinationActor = system.ActorOf(Props.Create( () => new BackEndJobCoordinationActor(router)),
                 "BackEndJobCoordinationActor");
 
             system.Scheduler

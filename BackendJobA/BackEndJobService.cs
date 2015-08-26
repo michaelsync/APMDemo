@@ -1,6 +1,8 @@
 ﻿using Akka.Actor;
 using Akka.Configuration.Hocon;
 using Akka.DI.AutoFac;
+using Autofac;
+using BackEndJobs.Actors;
 using Serilog;
 using System.Configuration;
 
@@ -10,7 +12,7 @@ namespace BackEndJobContainer {
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Start() {
-            var propsResolver = InitDependencyInjection();                        
+            InitDependencyInjection();                        
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
@@ -18,14 +20,20 @@ namespace BackEndJobContainer {
             Log.Information("Started injecting the required services and actors ");
 
             var builder = new Autofac.ContainerBuilder();
-            //builder.RegisterType<WorkerService>().As<IWorkerService>();
+            builder.RegisterType<BackEndJobAActor>();
             var container = builder.Build();
 
             var section = (AkkaConfigurationSection)ConfigurationManager.GetSection("akka");
 
             system = ActorSystem.Create("MyBackendProcessingSystem", section.AkkaConfig);
+            system.ActorOf(Props.Create(() => new BackEndJobAActor()), "bankends");
 
-            return new AutoFacDependencyResolver(container, system);
+            //var propsResolver = new AutoFacDependencyResolver(container, system);            
+
+            //system.ActorOf(propsResolver.Create<BackEndJobAActor>(), "backends");
+
+            //return propsResolver;
+            return null;
         }
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]

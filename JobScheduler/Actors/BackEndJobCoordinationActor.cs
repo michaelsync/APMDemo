@@ -1,16 +1,19 @@
 ﻿using Akka.Actor;
 using Akka.DI.Core;
 using Akka.Routing;
-using BackEndJobs.Actors;
+using BackEndSystem.Common.Messages;
 using JobManager.Messages;
 using JobManager.Models;
 using Serilog;
+using System;
 using System.Collections.Generic;
 
 namespace JobManager.Actors {
     public class BackEndJobCoordinationActor : ReceiveActor {
 
-        public BackEndJobCoordinationActor() {
+        IActorRef router;
+        public BackEndJobCoordinationActor(IActorRef router) {
+            this.router = router;
 
             Receive<JobConfigLoadOrUpdateMessage>(m => {
                 OnJobConfigLoadOrUpdateMessageReceived();
@@ -23,40 +26,35 @@ namespace JobManager.Actors {
         }
 
         private static void OnJobConfigLoadOrUpdateMessageReceived() {
-
             Log.Information("Recieved JobConfigLoadOrUpdate Request");
-
-            var databaseConfigurationProps = Context.DI().Props<DatabaseConfigurationActor>();
-            var databaseConfigurationActorName = "DatabaseConfigurationActor";
-
-            var databaseConfigurationActorRef = Context.Child(databaseConfigurationActorName).Equals(ActorRefs.Nobody)
-                ? Context.ActorOf(databaseConfigurationProps, databaseConfigurationActorName)
-                : Context.Child(databaseConfigurationActorName);
-            databaseConfigurationActorRef.Tell(new GetAllJobConfigurationsFromDbMessage());            
+            IActorRef databaseConfigurationActorRef = CreateOrGetActor<DatabaseConfigurationActor>("DatabaseConfigurationActor");
+            databaseConfigurationActorRef.Tell(new GetAllJobConfigurationsFromDbMessage());
         }
 
-        private static void OnJobConfigurationModelsReceived(List<JobConfigurationModel> models) {
+        private static IActorRef CreateOrGetActor<T>(string databaseConfigurationActorName, bool withRouther = false) where T : ActorBase {
+            var databaseConfigurationProps = withRouther ? Context.DI().Props<T>().WithRouter(FromConfig.Instance)
+                :  Context.DI().Props<T>(); 
+
+            var databaseConfigurationActorRef = Context.Child(databaseConfigurationActorName).Equals(ActorRefs.Nobody)
+                ? Context.ActorOf(databaseConfigurationProps, databaseConfigurationActorName) 
+                : Context.Child(databaseConfigurationActorName);
+
+            return databaseConfigurationActorRef;
+        }
+
+        private void OnJobConfigurationModelsReceived(List<JobConfigurationModel> models) {
             Log.Information("Recieved the list of JobConfigurationModels");
 
             foreach(var model in models) {
                 Log.Debug(model.Name);
+                Console.ReadLine();
 
-                var router = Context.ActorOf(Props.Create(() => new BackEndJobAActor())
-                        .WithRouter(FromConfig.Instance),
-                        "BackEndJobAActor");
-                router.Tell("Yell");
+                this.router.Tell(new StartBackEndJobMessage(1));
 
-                //Context.ActorSelection("/user/BackEndJobAActor").Tell("Hejarr");
-
-                //var backendRouter =
-                //    Context.ActorOf(
-                //        Props.Empty.WithRouter(new ClusterRouterGroup(new ConsistentHashingGroup("/user/BackEndJobAActor"),
-                //            new ClusterRouterGroupSettings(10, false, "backend", ImmutableHashSet.Create("/user/BackEndJobAActor")))));
-
-                //backendRouter.Tell("Yo yo!");
+                //var backEndJobAActor = CreateOrGetActor<RemoteJobActor>("backends", withRouther: true);
+                //backEndJobAActor.Tell(new StartBackEndJobMessage(1));
             }
         }
-
    }
     
 }

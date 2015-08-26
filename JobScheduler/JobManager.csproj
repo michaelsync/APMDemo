@@ -118,9 +118,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actors\BackEndJobAActor.cs" />
     <Compile Include="Actors\DatabaseConfigurationActor.cs" />
     <Compile Include="Actors\BackEndJobCoordinationActor.cs" />
+    <Compile Include="Actors\RemoteJobActor.cs" />
     <Compile Include="Core\ActorEnricher.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="JobManagementService.cs" />
@@ -147,6 +147,12 @@
     <Content Include="CHANGES.txt" />
     <Content Include="licenses\license.txt" />
     <Content Include="licenses\protoc-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BackEndSystem.Common\BackEndSystem.Common.csproj">
+      <Project>{e7eae4d5-72a7-43c3-8661-3a2032509ca1}</Project>
+      <Name>BackEndSystem.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
