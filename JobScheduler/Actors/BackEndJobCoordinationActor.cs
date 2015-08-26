@@ -2,6 +2,7 @@
 using Akka.Cluster.Routing;
 using Akka.DI.Core;
 using Akka.Routing;
+using BackEndJobs.Actors;
 using JobManager.Messages;
 using JobManager.Models;
 using Serilog;
@@ -47,7 +48,12 @@ namespace JobManager.Actors {
             foreach(var model in models) {
                 Log.Debug(model.Name);
 
-                Context.ActorSelection("/user/BackEndJobAActor").Tell("Hejarr");
+                var router = Context.ActorOf(Props.Create(() => new BackEndJobAActor())
+                .WithRouter(FromConfig.Instance),
+                "BackEndJobAActor");
+                router.Tell("Yell");
+
+                //Context.ActorSelection("/user/BackEndJobAActor").Tell("Hejarr");
 
                 //var backendRouter =
                 //    Context.ActorOf(

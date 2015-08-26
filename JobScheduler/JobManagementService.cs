@@ -1,6 +1,8 @@
 ﻿using Akka.Actor;
 using Akka.Configuration.Hocon;
 using Akka.DI.AutoFac;
+using Akka.Routing;
+using BackEndJobs.Actors;
 using JobManager.Actors;
 using JobManager.Messages;
 using Serilog;
