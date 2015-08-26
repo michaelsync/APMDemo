@@ -5,8 +5,16 @@ namespace JobScheduler {
     class Program {
 
         static void Main(string[] args) {
+
+            //.WriteTo.ColoredConsole(
+            //outputTemplate: "{Timestamp:HH:mm} [{Level}] ({ThreadId}) {Message}{NewLine}{Exception}")
+            //.Enrich.WithProperty("Version", "1.0.0")
+
+            
+
             Log.Logger = new LoggerConfiguration()
-                        .Enrich.WithThreadId()
+                        .Enrich.WithThreadId()    
+                        .Enrich.WithMachineName()                    
                         .ReadFrom.AppSettings()
                         .CreateLogger();
             Log.Information("The scheduler is started.");

@@ -10,6 +10,7 @@ using System;
 using System.Configuration;
 
 namespace JobScheduler {
+
     public class JobSchedulerService {
         
         private static ActorSystem system;

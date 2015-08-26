@@ -120,6 +120,7 @@
   <ItemGroup>
     <Compile Include="Actors\DatabaseConfigurationActor.cs" />
     <Compile Include="Actors\BackEndJobCoordinationActor.cs" />
+    <Compile Include="Core\ActorEnricher.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="JobSchedulerService.cs" />
     <Compile Include="Messages\GetAllJobConfigurationsFromDbMessage.cs" />
