@@ -14,11 +14,11 @@ namespace BackEndSystem.Common {
 
     public class LogEnabledRecieveActor : ReceiveActor{
         protected override void PreStart() {
-            Context.IncrementActorCreated();
+            Context.IncrementActorCreated(); //Need to add enable/disable logic
         }
 
         protected override void PostStop() {
-            Context.IncrementActorStopped();
+            Context.IncrementActorStopped(); //Need to add enable/disable logic
         }
     }
 }
