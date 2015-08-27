@@ -17,7 +17,7 @@ namespace JobManager {
                         .ReadFrom.AppSettings()
                         .CreateLogger();
 
-            Log.Information("The scheduler is started.");
+            Log.Information("The JobManager is started.");
 
             HostFactory.Run(x =>
             {
@@ -29,13 +29,13 @@ namespace JobManager {
                 });
                 x.RunAsLocalSystem();
 
-                x.SetDescription("This backend job service manager.");
-                x.SetDisplayName("JobScheduler");
-                x.SetServiceName("JobScheduler");
+                x.SetDescription("JobManager");
+                x.SetDisplayName("JobManager");
+                x.SetServiceName("JobManager");
             });
 
 
-            Log.Information("The scheduler is ended.");
+            Log.Information("The JobManager is ended.");
         }
     }
 }
