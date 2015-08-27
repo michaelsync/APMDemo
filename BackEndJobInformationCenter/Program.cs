@@ -10,7 +10,7 @@ namespace BackEndJobInformationCenter {
                        .Enrich.FromLogContext()
                        .ReadFrom.AppSettings()
                        .CreateLogger();
-            Log.Information("BackEndJobAService is started.");
+            Log.Information("Information Center Service is started.");
 
             HostFactory.Run(x => {
                 x.Service<BackEndJobInformationService>(s => {
@@ -20,13 +20,13 @@ namespace BackEndJobInformationCenter {
                 });
                 x.RunAsLocalSystem();
 
-                x.SetDescription("BackEnd Job A Service.");
-                x.SetDisplayName("BackEndJobAService");
-                x.SetServiceName("BackEndJobAService");
+                x.SetDescription("Information Center Service.");
+                x.SetDisplayName("InformationCenterService");
+                x.SetServiceName("InformationCenterService");
             });
 
 
-            Log.Information("BackEndJobAService is ended.");
+            Log.Information("Information Center Service is ended.");
         }
     }
 }

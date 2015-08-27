@@ -27,14 +27,6 @@ namespace JobManager.Actors {
             
         }
 
-        protected override void PreStart() {
-            Context.IncrementActorCreated();
-        }
-
-        protected override void PostStop() {
-            Context.IncrementActorStopped();
-        }
-
         private static void OnJobConfigLoadOrUpdateMessageReceived() {
             Log.Information("Recieved JobConfigLoadOrUpdate Request");
             IActorRef databaseConfigurationActorRef = CreateOrGetActor<DatabaseConfigurationActor>("DatabaseConfigurationActor");

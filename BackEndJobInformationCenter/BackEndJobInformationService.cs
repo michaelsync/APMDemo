@@ -18,23 +18,22 @@ namespace BackEndJobInformationCenter {
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
-        private static AutoFacDependencyResolver InitDependencyInjection() {
+        private static void InitDependencyInjection() {
             Log.Information("Started injecting the required services and actors ");
 
             var builder = new Autofac.ContainerBuilder();
-            builder.RegisterType<BackEndJobAActor>();
+            builder.RegisterType<BackEndTrackingActor>();
             var container = builder.Build();
 
             var section = (AkkaConfigurationSection)ConfigurationManager.GetSection("akka");
 
             system = ActorSystem.Create("MyBackendProcessingSystem", section.AkkaConfig);
 
-            system.ActorOf(Props.Create(() => new BackEndJobAActor(1)), "bankends");
+            system.ActorOf(Props.Create(() => new BackEndTrackingActor()), "tracker");
 
             ActorMonitoringExtension.RegisterMonitor(system,
                 new ActorPerformanceCountersMonitor());
-            
-            return null;
+
         }
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]

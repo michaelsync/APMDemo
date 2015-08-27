@@ -11,6 +11,7 @@ namespace BackEndSystem.Common.Messages {
             this.Id = id;
         }
         public int Id { get; private set; }
+        public string Name { get; set; }
         public object ConsistentHashKey {
             get {
                 return this.GetHashCode();

@@ -5,11 +5,11 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEndSystem.Common", "BackEndSystem.Common\BackEndSystem.Common.csproj", "{E7EAE4D5-72A7-43C3-8661-3A2032509CA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEndJobContainer", "BackEndJobContainer\BackEndJobContainer.csproj", "{93C83D0D-1EA3-4591-B6C3-8206FB41CAB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendJobContainer", "BackEndJobContainer\BackendJobContainer.csproj", "{93C83D0D-1EA3-4591-B6C3-8206FB41CAB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobManager", "JobManagementService\JobManager.csproj", "{5E341252-D7AD-4513-A2F3-3C4B046BE3F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEndJobInformationCenter", "BackEndJobInformationCenter\BackEndJobInformationCenter.csproj", "{C8491F5B-D417-4384-B7C6-24E1E9E7D7E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendJobInformationCenter", "BackEndJobInformationCenter\BackendJobInformationCenter.csproj", "{C8491F5B-D417-4384-B7C6-24E1E9E7D7E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
