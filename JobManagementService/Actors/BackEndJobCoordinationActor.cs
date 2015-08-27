@@ -1,5 +1,6 @@
 ﻿using Akka.Actor;
 using Akka.DI.Core;
+using Akka.Monitoring;
 using Akka.Routing;
 using BackEndSystem.Common.Messages;
 using JobManager.Messages;
@@ -26,6 +27,14 @@ namespace JobManager.Actors {
             
         }
 
+        protected override void PreStart() {
+            Context.IncrementActorCreated();
+        }
+
+        protected override void PostStop() {
+            Context.IncrementActorStopped();
+        }
+
         private static void OnJobConfigLoadOrUpdateMessageReceived() {
             Log.Information("Recieved JobConfigLoadOrUpdate Request");
             IActorRef databaseConfigurationActorRef = CreateOrGetActor<DatabaseConfigurationActor>("DatabaseConfigurationActor");
@@ -47,10 +56,11 @@ namespace JobManager.Actors {
             Log.Information("Recieved the list of JobConfigurationModels");
 
             foreach(var model in models) {
-                using (LogContext.PushProperty("JobId", "1")) {
+                using (LogContext.PushProperty("JobId", 1 + model.Id)) {
                     Log.Debug(model.Name);
-                    Console.ReadLine();
-                    this.router.Tell(new StartBackEndJobMessage(1));
+                    Log.Debug("Kick off new job");
+                    //Console.ReadLine();
+                    this.router.Tell(new StartBackEndJobMessage(model.Id));
                 }                    
             }
         }

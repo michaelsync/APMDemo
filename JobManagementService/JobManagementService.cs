@@ -1,6 +1,8 @@
 ﻿using Akka.Actor;
 using Akka.Configuration.Hocon;
 using Akka.DI.AutoFac;
+using Akka.Monitoring;
+using Akka.Monitoring.PerformanceCounters;
 using Akka.Routing;
 using Autofac;
 using JobManager.Actors;
@@ -11,7 +13,7 @@ using System.Configuration;
 namespace JobManager {
 
     public class JobManagementService {
-        
+
         private static ActorSystem system;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
@@ -35,7 +37,13 @@ namespace JobManager {
             var section = (AkkaConfigurationSection)ConfigurationManager.GetSection("akka");
 
             system = ActorSystem.Create("MyBackendProcessingSystem", section.AkkaConfig);
-
+            ActorMonitoringExtension.RegisterMonitor(system,
+    new ActorPerformanceCountersMonitor(
+        new CustomMetrics {
+            Counters = { "akka.custom.metric1", "akka.custom.metric2" },
+            Gauges = { "akka.messageboxsize" },
+            Timers = { "akka.handlertime" }
+        }));
             return new AutoFacDependencyResolver(container, system);
         }
         private static void ScheduleBackEndJobCoordinator(AutoFacDependencyResolver propsResolver) {
@@ -43,11 +51,11 @@ namespace JobManager {
 
             var router = system.ActorOf(Props.Create(() => new RemoteJobActor()).WithRouter(FromConfig.Instance), "tasker1");
 
-            var backEndJobCoordinationActor = system.ActorOf(Props.Create( () => new BackEndJobCoordinationActor(router)),
+            var backEndJobCoordinationActor = system.ActorOf(Props.Create(() => new BackEndJobCoordinationActor(router)),
                 "BackEndJobCoordinationActor");
 
             system.Scheduler
-                .ScheduleTellRepeatedly(100, 3000, backEndJobCoordinationActor, 
+                .ScheduleTellRepeatedly(100, 3000, backEndJobCoordinationActor,
                 new JobConfigLoadOrUpdateMessage(), backEndJobCoordinationActor);
         }
 

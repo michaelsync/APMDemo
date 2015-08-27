@@ -1,8 +1,6 @@
 ﻿using Akka.Actor;
 using Akka.Configuration.Hocon;
 using Akka.DI.AutoFac;
-using Akka.Monitoring;
-using Akka.Monitoring.PerformanceCounters;
 using Autofac;
 using BackEndJobs.Actors;
 using Serilog;
@@ -28,16 +26,7 @@ namespace BackEndJobContainer {
             var section = (AkkaConfigurationSection)ConfigurationManager.GetSection("akka");
 
             system = ActorSystem.Create("MyBackendProcessingSystem", section.AkkaConfig);
-
-            system.ActorOf(Props.Create(() => new BackEndJobAActor(1)), "bankends");
-
-            ActorMonitoringExtension.RegisterMonitor(system,
-                new ActorPerformanceCountersMonitor(
-                    new CustomMetrics {
-                        Counters = { "akka.custom.metric1", "akka.custom.metric2" },
-                        Gauges = { "akka.messageboxsize" },
-                        Timers = { "akka.handlertime" }
-                    }));
+            system.ActorOf(Props.Create(() => new BackEndJobAActor()), "bankends");
 
             //var propsResolver = new AutoFacDependencyResolver(container, system);            
 
