@@ -10,13 +10,14 @@ using Serilog;
 using Serilog.Context;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace JobManager.Actors {
     public class BackEndJobCoordinationActor : LogEnabledRecieveActor {
 
-        IActorRef router;
+        IActorRef trackingRouter;
         public BackEndJobCoordinationActor(IActorRef router) {
-            this.router = router;
+            this.trackingRouter = router;
 
             Receive<JobConfigLoadOrUpdateMessage>(m => {
                 OnJobConfigLoadOrUpdateMessageReceived();
@@ -48,11 +49,19 @@ namespace JobManager.Actors {
             Log.Information("Recieved the list of JobConfigurationModels");
 
             foreach(var model in models) {
-                using (LogContext.PushProperty("JobId", 1 + model.Id)) {
+                using (LogContext.PushProperty("JobId", model.Id)) {
+
+                    var childActorName = string.Format(CultureInfo.InvariantCulture, "backend{0}", model.Id);
+
+                    var router = Context.ActorOf(Props.Create(() => new EmptyRemoteJobActor())
+                        .WithRouter(FromConfig.Instance), childActorName);
+
+                    router.Tell(new StartBackEndJobMessage(model.Id));
+
                     Log.Debug(model.Name);
                     Log.Debug("Kick off new job");
                     //Console.ReadLine();
-                    this.router.Tell(new StartBackEndJobMessage(model.Id));
+                    this.trackingRouter.Tell(new StartBackEndJobMessage(model.Id));
                 }                    
             }
         }
