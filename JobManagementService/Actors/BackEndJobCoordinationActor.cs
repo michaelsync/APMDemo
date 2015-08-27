@@ -2,6 +2,7 @@
 using Akka.DI.Core;
 using Akka.Monitoring;
 using Akka.Routing;
+using BackEndSystem.Common;
 using BackEndSystem.Common.Messages;
 using JobManager.Messages;
 using JobManager.Models;
@@ -11,7 +12,7 @@ using System;
 using System.Collections.Generic;
 
 namespace JobManager.Actors {
-    public class BackEndJobCoordinationActor : ReceiveActor {
+    public class BackEndJobCoordinationActor : LogEnabledRecieveActor {
 
         IActorRef router;
         public BackEndJobCoordinationActor(IActorRef router) {
@@ -23,8 +24,7 @@ namespace JobManager.Actors {
 
             Receive<List<JobConfigurationModel>>(m => {
                 OnJobConfigurationModelsReceived(m);
-            });
-            
+            });            
         }
 
         private static void OnJobConfigLoadOrUpdateMessageReceived() {

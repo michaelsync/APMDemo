@@ -1,4 +1,5 @@
 ﻿using Akka.Actor;
+using BackEndSystem.Common;
 using JobManager.Messages;
 using JobManager.Models;
 using Serilog;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace JobManager.Actors {
-    public class DatabaseConfigurationActor : ReceiveActor {
+    public class DatabaseConfigurationActor : LogEnabledRecieveActor {
         public DatabaseConfigurationActor() {
 
             Receive<GetAllJobConfigurationsFromDbMessage>(m => {
