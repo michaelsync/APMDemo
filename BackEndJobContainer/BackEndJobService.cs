@@ -32,13 +32,13 @@ namespace BackEndJobContainer {
             system.ActorOf(Props.Create(() => new BackEndJobAActor(1)), "bankends");
 
             ActorMonitoringExtension.RegisterMonitor(system,
-                new ActorPerformanceCountersMonitor(
-                    new CustomMetrics {
-                        Counters = { "akka.custom.metric1", "akka.custom.metric2" },
-                        Gauges = { "akka.messageboxsize" },
-                        Timers = { "akka.handlertime" }
-                    }));
+                new ActorPerformanceCountersMonitor());
 
+            //new CustomMetrics {
+            //    Counters = { "akka.custom.metric1", "akka.custom.metric2" },
+            //    Gauges = { "akka.messageboxsize" },
+            //    Timers = { "akka.handlertime" }
+            //}
             //var propsResolver = new AutoFacDependencyResolver(container, system);            
 
             //system.ActorOf(propsResolver.Create<BackEndJobAActor>(), "backends");

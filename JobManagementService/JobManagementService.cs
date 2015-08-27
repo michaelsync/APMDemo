@@ -37,13 +37,8 @@ namespace JobManager {
             var section = (AkkaConfigurationSection)ConfigurationManager.GetSection("akka");
 
             system = ActorSystem.Create("MyBackendProcessingSystem", section.AkkaConfig);
-            ActorMonitoringExtension.RegisterMonitor(system,
-    new ActorPerformanceCountersMonitor(
-        new CustomMetrics {
-            Counters = { "akka.custom.metric1", "akka.custom.metric2" },
-            Gauges = { "akka.messageboxsize" },
-            Timers = { "akka.handlertime" }
-        }));
+            ActorMonitoringExtension.RegisterMonitor(system,new ActorPerformanceCountersMonitor());
+
             return new AutoFacDependencyResolver(container, system);
         }
         private static void ScheduleBackEndJobCoordinator(AutoFacDependencyResolver propsResolver) {
