@@ -4,7 +4,7 @@ using BackEndSystem.Common.Messages;
 using Serilog;
 using Serilog.Context;
 
-namespace BackEndJobs.Actors {
+namespace BackEndJobInformationCenter.Actors {
     public class BackEndJobAActor : ReceiveActor {
 
         public BackEndJobAActor(int jobId) {

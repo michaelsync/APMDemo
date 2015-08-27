@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{93C83D0D-1EA3-4591-B6C3-8206FB41CAB3}</ProjectGuid>
+    <ProjectGuid>{C8491F5B-D417-4384-B7C6-24E1E9E7D7E4}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BackEndJobContainer</RootNamespace>
-    <AssemblyName>BackEndJobContainer</AssemblyName>
+    <RootNamespace>BackEndJobInformationCenter</RootNamespace>
+    <AssemblyName>BackEndJobInformationCenter</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -122,8 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actors\BackEndJobAActor.cs" />
-    <Compile Include="Actors\BackEndJobADbActor.cs" />
-    <Compile Include="BackEndJobService.cs" />
+    <Compile Include="BackEndJobInformationService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

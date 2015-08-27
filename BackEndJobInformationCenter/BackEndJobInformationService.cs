@@ -4,12 +4,12 @@ using Akka.DI.AutoFac;
 using Akka.Monitoring;
 using Akka.Monitoring.PerformanceCounters;
 using Autofac;
-using BackEndJobs.Actors;
+using BackEndJobInformationCenter.Actors;
 using Serilog;
 using System.Configuration;
 
-namespace BackEndJobContainer {
-    public class BackEndJobService {
+namespace BackEndJobInformationCenter {
+    public class BackEndJobInformationService {
         private static ActorSystem system;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
@@ -33,17 +33,7 @@ namespace BackEndJobContainer {
 
             ActorMonitoringExtension.RegisterMonitor(system,
                 new ActorPerformanceCountersMonitor());
-
-            //new CustomMetrics {
-            //    Counters = { "akka.custom.metric1", "akka.custom.metric2" },
-            //    Gauges = { "akka.messageboxsize" },
-            //    Timers = { "akka.handlertime" }
-            //}
-            //var propsResolver = new AutoFacDependencyResolver(container, system);            
-
-            //system.ActorOf(propsResolver.Create<BackEndJobAActor>(), "backends");
-
-            //return propsResolver;
+            
             return null;
         }
         
