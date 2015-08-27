@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BackEndJobContainer.Tracker")]
+[assembly: AssemblyTitle("BackendJobA")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BackEndJobContainer.Tracker")]
+[assembly: AssemblyProduct("BackendJobA")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4d942bde-33f9-4e8e-8b18-699c4a2db2c9")]
+[assembly: Guid("93c83d0d-1ea3-4591-b6c3-8206fb41cab3")]
 
 // Version information for an assembly consists of the following four values:
 //
