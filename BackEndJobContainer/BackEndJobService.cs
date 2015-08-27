@@ -29,7 +29,7 @@ namespace BackEndJobContainer {
 
             system = ActorSystem.Create("MyBackendProcessingSystem", section.AkkaConfig);
 
-            system.ActorOf(Props.Create(() => new BackEndJobAActor(1)), "bankends");
+            system.ActorOf(Props.Create(() => new BackEndJobAActor(1)), "backends");
 
             ActorMonitoringExtension.RegisterMonitor(system,
                 new ActorPerformanceCountersMonitor());

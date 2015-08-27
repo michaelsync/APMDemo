@@ -42,9 +42,9 @@ namespace JobManager {
             return new AutoFacDependencyResolver(container, system);
         }
         private static void ScheduleBackEndJobCoordinator(AutoFacDependencyResolver propsResolver) {
-            Log.Information("ScheduleBackEndJobCoordinator {1}", propsResolver.ToString());
+            Log.Information("ScheduleBackEndJobCoordinator {0}", propsResolver.ToString());
 
-            var trackerRouter = system.ActorOf(Props.Create(() => new RemoteJobActor()).WithRouter(FromConfig.Instance), "tracker1");
+            var trackerRouter = system.ActorOf(Props.Create(() => new EmptyRemoteJobActor()).WithRouter(FromConfig.Instance), "trackerroute");
 
             var backEndJobCoordinationActor = system.ActorOf(Props.Create(() => new BackEndJobCoordinationActor(trackerRouter)),
                 "BackEndJobCoordinationActor");

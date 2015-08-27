@@ -13,6 +13,8 @@ namespace BackEndJobInformationCenter.Actors {
 
             Receive<StartBackEndJobMessage>(m => {
                 JobDictionary.TryAdd(m.Id, m.Name);
+
+                Log.Information("Job Count : {0}", JobDictionary.Count);
             });
         }
     }

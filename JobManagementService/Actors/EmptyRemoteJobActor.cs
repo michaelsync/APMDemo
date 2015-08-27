@@ -8,11 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace JobManager.Actors {
-    public class RemoteJobActor : LogEnabledRecieveActor {
-        public RemoteJobActor() {
-            //Receive<StartBackEndJobMessage>(start => {
-            //    Context.ActorSelection("/user/backends").Tell(start, Sender);
-            //});
+    public class EmptyRemoteJobActor : LogEnabledRecieveActor {
+        public EmptyRemoteJobActor() {
         }
 
     }

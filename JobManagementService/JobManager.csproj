@@ -132,7 +132,7 @@
   <ItemGroup>
     <Compile Include="Actors\DatabaseConfigurationActor.cs" />
     <Compile Include="Actors\BackEndJobCoordinationActor.cs" />
-    <Compile Include="Actors\RemoteJobActor.cs" />
+    <Compile Include="Actors\EmptyRemoteJobActor.cs" />
     <Compile Include="Core\ActorEnricher.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="JobManagementService.cs" />
