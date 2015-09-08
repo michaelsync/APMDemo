@@ -51,12 +51,12 @@ namespace JobManager.Actors {
             foreach(var model in models) {
                 using (LogContext.PushProperty("JobId", model.Id)) {
 
-                    var childActorName = string.Format(CultureInfo.InvariantCulture, "backend{0}", model.Id);
+                    ///var childActorName = string.Format(CultureInfo.InvariantCulture, backend{0}", model.Id);
 
-                    var router = Context.ActorOf(Props.Create(() => new EmptyRemoteJobActor())
-                        .WithRouter(FromConfig.Instance), childActorName);
+                    //var router = Context.ActorOf(Props.Create(() => new EmptyRemoteJobActor())
+                    //    .WithRouter(FromConfig.Instance), childActorName);
 
-                    router.Tell(new StartBackEndJobMessage(model.Id));
+                    //router.Tell(new StartBackEndJobMessage(model.Id));
 
                     Log.Debug(model.Name);
                     Log.Debug("Kick off new job");

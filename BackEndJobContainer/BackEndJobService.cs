@@ -20,7 +20,7 @@ namespace BackEndJobContainer {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
         private static AutoFacDependencyResolver InitDependencyInjection() {
             Log.Information("Started injecting the required services and actors ");
-
+            
             var builder = new Autofac.ContainerBuilder();
             builder.RegisterType<BackEndJobAActor>();
             var container = builder.Build();
@@ -28,7 +28,7 @@ namespace BackEndJobContainer {
             var section = (AkkaConfigurationSection)ConfigurationManager.GetSection("akka");
 
             system = ActorSystem.Create("MyBackendProcessingSystem", section.AkkaConfig);
-
+            
             system.ActorOf(Props.Create(() => new BackEndJobAActor(1)), "backends");
 
             ActorMonitoringExtension.RegisterMonitor(system,

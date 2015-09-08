@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobManager", "JobManagement
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendJobInformationCenter", "BackEndJobInformationCenter\BackendJobInformationCenter.csproj", "{C8491F5B-D417-4384-B7C6-24E1E9E7D7E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobManager.Tests", "JobManager.Tests\JobManager.Tests.csproj", "{9453AA04-3F19-4221-9542-861477F6B044}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS", "CQRS\CQRS.csproj", "{9D6C0D04-25F4-475C-BA64-9559FC32B8DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{C8491F5B-D417-4384-B7C6-24E1E9E7D7E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8491F5B-D417-4384-B7C6-24E1E9E7D7E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8491F5B-D417-4384-B7C6-24E1E9E7D7E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9453AA04-3F19-4221-9542-861477F6B044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9453AA04-3F19-4221-9542-861477F6B044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9453AA04-3F19-4221-9542-861477F6B044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9453AA04-3F19-4221-9542-861477F6B044}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D6C0D04-25F4-475C-BA64-9559FC32B8DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D6C0D04-25F4-475C-BA64-9559FC32B8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D6C0D04-25F4-475C-BA64-9559FC32B8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D6C0D04-25F4-475C-BA64-9559FC32B8DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
