@@ -8,8 +8,4 @@ namespace CQRS {
     public class SelectCustomerByIdQuery : IQuery<IEnumerable<Customer>> {
         public int Id { get; set; }
     }
-
-    public class SelectCustomerByIdQuery1: IQuery<IEnumerable<IEnumerable<Customer>>>
-    {
-    }
 }
