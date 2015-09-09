@@ -3,4 +3,5 @@
         TResult Handle(TQuery query);
     }
 
+    
 }
