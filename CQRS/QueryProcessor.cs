@@ -13,6 +13,8 @@ namespace CQRS {
 
             return handler.Handle((dynamic)query);
         }
+
+
     }
 
 }
