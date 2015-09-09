@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
 
 namespace CQRS {
-    public class SelectCustomerByIdQueryHandler : IMultipleQueriesHandler<IList<SelectCustomerByIdQuery>, IEnumerable<Customer>>
+    public class SelectCustomerByIdQueryHandler : IMultipleQueriesHandler<SelectCustomerByIdQuery, IEnumerable<Customer>>
     {
-
-        public IEnumerable<Customer> Handle(IList<SelectCustomerByIdQuery> query)
+        public IEnumerable<Customer> Handle(IEnumerable<SelectCustomerByIdQuery> queries)
         {
-            var ids = query.Select(a => a.Id).ToArray();
+            var ids = queries.Select(a => a.Id).ToArray();
             var customerProcessor = ServiceLocator.Current.GetInstance<ICustomerRepository>();
             Console.WriteLine("Batch but not bitch!");
             return customerProcessor.GetCustomersByIds(ids);

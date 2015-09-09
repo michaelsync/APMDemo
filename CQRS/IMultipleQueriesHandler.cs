@@ -2,8 +2,8 @@
 
 namespace CQRS
 {
-    public interface IMultipleQueriesHandler<in TQueryList, out TResult> 
+    public interface IMultipleQueriesHandler<in TQuery, out TResult> where TQuery: IQuery<TResult>
     {
-        TResult Handle(TQueryList query);
+        TResult Handle(IEnumerable<TQuery> queries);
     }
 }

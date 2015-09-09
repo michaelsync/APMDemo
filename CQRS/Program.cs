@@ -49,7 +49,7 @@ namespace CQRS {
             builder.RegisterType<BatchProcessor>().As<IBatchProcessor>();
 
             builder.Register(c => new SelectCustomerByIdQueryHandler())
-                .As<IMultipleQueriesHandler<IList<SelectCustomerByIdQuery>, IEnumerable<Customer>>>();
+                .As<IMultipleQueriesHandler<SelectCustomerByIdQuery, IEnumerable<Customer>>>();
             
             builder.RegisterType<Runner>();
             var container = builder.Build();
