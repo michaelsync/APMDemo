@@ -80,10 +80,6 @@
       <Project>{e7eae4d5-72a7-43c3-8661-3a2032509ca1}</Project>
       <Name>BackEndSystem.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JobManagementService\JobManager.csproj">
-      <Project>{5e341252-d7ad-4513-a2f3-3c4b046be3f6}</Project>
-      <Name>JobManager</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
