@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobManager.Tests", "JobMana
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS", "CQRS\CQRS.csproj", "{9D6C0D04-25F4-475C-BA64-9559FC32B8DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{7A981D61-A3FC-414B-9037-03B3D1805E6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{9D6C0D04-25F4-475C-BA64-9559FC32B8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D6C0D04-25F4-475C-BA64-9559FC32B8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D6C0D04-25F4-475C-BA64-9559FC32B8DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A981D61-A3FC-414B-9037-03B3D1805E6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A981D61-A3FC-414B-9037-03B3D1805E6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A981D61-A3FC-414B-9037-03B3D1805E6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A981D61-A3FC-414B-9037-03B3D1805E6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
